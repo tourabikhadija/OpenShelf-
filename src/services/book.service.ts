@@ -22,3 +22,25 @@ export async function creatBook(bookData:{
   return book
 }
 
+export async function updateBook(id: string ,bookData:{
+     title: string;
+    author: string;
+    isbn : string;
+    category: string;
+    publicationYear:string;
+    description : string;
+}
+){
+    const book = await Book.findByIdAndUpdate(id,bookData, {new:true});
+    return book;
+
+}
+
+export async function deleteBook(id:string){
+  const book = await Book.findByIdAndDelete(id);
+  return book;
+}
+
+
+
+
