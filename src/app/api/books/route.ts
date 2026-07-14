@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import {connectToDatabase} from '@/lib/db';
 import Book from "@/models/Book";
-import {bookShema} from "@/services/book.service"
-import { request } from "http";
-import Book from "@/models/Book";
-
+import {bookShema} from "@/services/book.service";
 
 
 export async function GET(){
