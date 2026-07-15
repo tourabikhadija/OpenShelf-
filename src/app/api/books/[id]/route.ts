@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import {connectToDatabase} from '@/lib/db';
+import {connect} from '@/lib/db';
 import Book from "@/models/Book";
-import {bookShema} from "@/services/book.service";
+import {bookShema} from "@/lib/validators";
 
 
 
@@ -10,7 +10,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await connectToDatabase();
+    await connect();
     const { id } = await params;
 
     const book = await Book.findById(id);

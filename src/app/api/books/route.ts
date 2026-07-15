@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import {connectToDatabase} from '@/lib/db';
+import {connect} from '@/lib/db';
 import Book from "@/models/Book";
-import {bookShema} from "@/services/book.service";
+import {bookShema} from "@/lib/validators";
 
 
 export async function GET(){
     try{
-        await connectToDatabase();
+        await connect();
         const books = await Book.find();
         return NextResponse.json(books)
     }
@@ -20,7 +20,7 @@ export async function GET(){
 }
 export async function POST(request:Request){
     try{
-       await connectToDatabase();
+       await connect();
        const body = await request.json();
        const result = bookShema.safeParse(body);
 
