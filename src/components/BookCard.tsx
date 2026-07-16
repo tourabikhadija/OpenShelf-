@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 type Book = {
@@ -11,9 +12,21 @@ type Book = {
 
 type BookCardProps = {
   book: Book;
+  onDelete: (bookId: string) => void;
 };
 
-export default function BookCard({ book }: BookCardProps) {
+export default function BookCard({ book, onDelete }: BookCardProps) {
+
+  async function handleDelete() {
+    try {
+      const res = await fetch(`/api/books/${book._id}`, { method: "DELETE" });
+      if (res.ok) {
+        onDelete(book._id);
+      }
+    } catch (error) {
+      console.error("Failed to delete book:", error);
+    }
+  }
   return (
     <div className="book-card">
       <h2>{book.title}</h2>
@@ -31,7 +44,7 @@ export default function BookCard({ book }: BookCardProps) {
         Edit
       </Link>
 
-      <button>Delete</button>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 }

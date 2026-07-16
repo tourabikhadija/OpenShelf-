@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BookCard from "@/components/BookCard";
 
   type Book = {
@@ -13,7 +13,8 @@ import BookCard from "@/components/BookCard";
 
 export default function App(){
 
-  const [books , setBooks] = useState([]);
+
+  const [books , setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     async function getBooks(){
@@ -33,6 +34,26 @@ export default function App(){
     getBooks();
   },[]);
   
+    function handleDelete(bookId: string){
+      setBooks((prev) =>
+        prev.filter((book) =>book._id !==bookId)
+      );
+    }
+    // const filteredBooks = books.filter((book) => {
+    // const query = searchQuery.toLowerCase();
+    // const title = book.title.toLowerCase();
+    // const author = book.author.toLowerCase();
+    // const matchesSearch = title.includes(query) || author.includes(query);
+
+    // let matchesFilter = true;
+    // if (filterStatus === 'available') {
+    //   matchesFilter = book.available === true;
+    // } else if (filterStatus === 'borrowed') {
+    //   matchesFilter = book.available === false;
+    // }
+
+    // return matchesSearch && matchesFilter;
+  // });
 
   return(
     <div>
@@ -45,7 +66,7 @@ export default function App(){
       
       <div>
         {books.map((book)=>(
-          <BookCard key={book._id} book={book}/>
+          <BookCard key={book._id} book={book} onDelete={handleDelete}/>
         ))}
       </div>
 

@@ -31,7 +31,7 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await connectToDatabase();
+    await connect();
     const { id } = await params;
 
     const body = await request.json();
@@ -61,7 +61,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await connectToDatabase();
+    await connect();
     const { id } = await params;
 
     const book = await Book.findByIdAndDelete(id);
