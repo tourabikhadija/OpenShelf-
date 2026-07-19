@@ -1,8 +1,11 @@
 "use client"
 import { useEffect, useState } from "react";
 import BookCard from "@/components/BookCard";
+import SearchBar from "@/components/SearchBar";
+import  "@/style/Home.css";
+import Image from "next/image";
 
-  type Book = {
+type Book = {
     _id: string;
     title: string;
     author: string;
@@ -15,6 +18,8 @@ export default function App(){
 
 
   const [books , setBooks] = useState<Book[]>([]);
+  const [search , setSearch] = useState('');
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     async function getBooks(){
@@ -39,38 +44,67 @@ export default function App(){
         prev.filter((book) =>book._id !==bookId)
       );
     }
-    // const filteredBooks = books.filter((book) => {
-    // const query = searchQuery.toLowerCase();
-    // const title = book.title.toLowerCase();
-    // const author = book.author.toLowerCase();
-    // const matchesSearch = title.includes(query) || author.includes(query);
+    const filteredBooks = books.filter((book) => {
+    const query = search.toLowerCase();
+    const title = book.title.toLowerCase();
+    const author = book.author.toLowerCase();
+    const matchesSearch = title.includes(query) || author.includes(query);
 
-    // let matchesFilter = true;
-    // if (filterStatus === 'available') {
-    //   matchesFilter = book.available === true;
-    // } else if (filterStatus === 'borrowed') {
-    //   matchesFilter = book.available === false;
-    // }
+    let matchesFilter = true;
+    if (filter === 'available') {
+      matchesFilter = book.available === true;
+    } else if (filter === 'borrowed') {
+      matchesFilter = book.available === false;
+    }
 
-    // return matchesSearch && matchesFilter;
-  // });
+     return matchesSearch && matchesFilter;
+ });
 
   return(
+    <main className="container">
     <div>
-      <h1>OpenShelf </h1>
+      <section className="section-hero">
+        <div className="hero-content">
+         <h1>Explore ancient manuscripts and timeless knowledge. </h1>
 
-      <p>Application de gestion de bibliothèque permettant de gérer efficacement les livres, les utilisateurs et les emprunts.
-         Elle facilite le suivi des ouvrages disponibles, l’ajout et la modification des livres, ainsi que la gestion des opérations
-          d’emprunt et de retour grâce à une interface simple et intuitive.
-      </p>
+         <p>A private catalogue of the permanent collection
+         , curated and cared for by the Ashworth Athenaeum.  
+         </p>
+
+         <button className="Collection">Explore Collection</button>
+        </div>
+
+        <div className="hero-image-container">
+           <Image src="/images/hero-new.png" alt="Hero" width={350} height={600}  className="hero-image"/>
+         
+          <div className="hero-overlay">
+             <h1>The Grand Archive</h1>
+             <p>Where every page preserves a piece of history, <br />
+             and every book unlocks timeless knowledge.</p>
+          </div>
+       </div>
+
+      </section>
       
-      <div>
-        {books.map((book)=>(
-          <BookCard key={book._id} book={book} onDelete={handleDelete}/>
-        ))}
-      </div>
+      <div className="shelf-divider"></div>
 
-
+      <SearchBar query={search} onSearch={setSearch} />
+      
+      {filteredBooks.length === 0 ? (
+        <div className="empty-state">
+          <div className="empty-state-icon">&#128218;</div>
+          <p className="empty-state-text">
+            No books found. Time to add some to your shelf!
+          </p>
+        </div>
+      ) : (
+        <div className="books-container">
+          {filteredBooks.map((book) => (
+            <BookCard key={book._id} book={book} onDelete={handleDelete} />
+          ))}
+        </div>
+      )}
     </div>
+    </main>
   );
 }

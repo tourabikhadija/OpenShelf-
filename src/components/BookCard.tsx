@@ -1,5 +1,8 @@
+
 "use client";
 import Link from "next/link";
+import "@/style/BookCard.css";
+import Image from "next/image";
 
 type Book = {
   _id: string;
@@ -28,23 +31,76 @@ export default function BookCard({ book, onDelete }: BookCardProps) {
     }
   }
   return (
-    <div className="book-card">
-      <h2>{book.title}</h2>
+  <div className="archive-card">
 
-      <p>Author: {book.author}</p>
-      <p>Category: {book.category}</p>
-      <p>Year: {book.publicationYear}</p>
-      <p>Status: {book.available ? "Available" : "Borrowed"}</p>
+    <div className="ribbon"></div>
 
-      <Link href={`/books/${book._id}`}>
-        View Details
-      </Link>
+    <div className="bracket bl"></div>
+    <div className="bracket br"></div>
 
-      <Link href={`/books/edit/${book._id}`}>
-        Edit
-      </Link>
-
-      <button onClick={handleDelete}>Delete</button>
+    <div className={`status-badge ${book.available ? "available" : "borrowed"}`}>
+      {book.available ? "Available" : "Borrowed"}
     </div>
-  );
+
+    <div className="watermark">
+      OPEN SHELF
+    </div>
+
+    <div className="title-box">
+      <h2>{book.title}</h2>
+      <div className="subtitle">
+        {book.category}
+      </div>
+    </div>
+
+    <div className="meta-row">
+      <span>{book.author}</span>
+      <span>{book.publicationYear}</span>
+    </div>
+
+    <div className="actions">
+
+      <Link 
+        href={`/books/${book._id}`} 
+        className="action-btn edit"
+      >
+        <Image 
+          src="/images/Afficher.png"
+          alt="Afficher"
+          width={30}
+          height={30}
+           title="Afficher le livre"
+        />
+      </Link>
+
+      <Link 
+        href={`/books/edit/${book._id}`} 
+        className="action-btn"
+      >
+       <Image 
+          src="/images/Modifier.png"
+          alt="Modifier"
+          width={30}
+          height={30}
+          title="Modifier le livre"
+        />
+      </Link>
+
+      <button 
+        onClick={handleDelete}
+        className="action-btn delete"
+      >
+       <Image 
+          src="/images/Supprime.png"
+          alt="Supprime"
+          width={30}
+          height={30}
+          title="Supprime le livre"
+        />
+      </button>
+
+    </div>
+
+  </div>
+);
 }

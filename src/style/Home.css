@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+body{
+    background:#F8F1E5;
+}
+
+
+.container {
+    max-width: 1200px;
+    width: 79%;
+    margin: 0 auto;
+    
+}
+
+h1 {
+    max-width: 600px;
+    font-size: 38px;
+}
+
+p {
+    max-width: 500px;
+    font-size: 14px;
+}
+
+.Collection {
+    margin-top: 25px;
+    padding: 14px 35px;
+    height: 68px;
+    background: #6B1E2C;
+    color: #C9A227;
+
+    border: 2px solid #C9A227;
+    border-radius: 20px;
+
+    font-family: "Inria Serif", serif;
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Collection:hover {
+    background: transparent;
+    color: #C9A227;
+    transform: translateY(-3px);
+}
+
+.section-hero {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-image-container {
+    position: relative;
+    width: 450px;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    transition: transform 1s ease;
+    transform-origin: center;
+}
+
+.hero-image:hover {
+    transform: perspective(800px) rotateX(8deg) rotateY(-8deg) scale(1.05);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    color: #F8F1E5;
+}
+
+.hero-overlay h1 { 
+    margin: 0 auto 15px;
+    font-size: 26px;
+     font-family: "Great Vibes", cursive;
+     color: black;
+}
+
+.hero-overlay p {
+    max-width: 280px;
+    margin: 0 auto;
+    font-size: 13px;
+    line-height: 1.6;
+    color: black;
+     font-family: "Great Vibes", cursive;
+}
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    max-width: 1200px;
+    width: 90%;
+    margin: 80px auto;
+}
