@@ -166,3 +166,8 @@
   border-color: #c25b5b;
   color: #e08a8a;
 }
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}

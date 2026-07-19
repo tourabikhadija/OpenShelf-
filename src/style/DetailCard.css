@@ -1,0 +1,165 @@
+.book-detail {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 120px 20px 50px;
+
+    background: #F6EFDD;
+}
+
+
+/* Card */
+.book-detail-card {
+    width: 500px;
+    max-width: 100%;
+
+    background: linear-gradient(
+        180deg,
+        #5c1229,
+        #4a0e21
+    );
+
+    padding: 35px;
+
+    border: 1px solid #cda43c;
+    border-radius: 12px;
+
+    color: #f6efdd;
+
+    box-shadow:
+        6px 8px 0 rgba(0,0,0,0.18),
+        0 0 20px rgba(201,162,39,0.2);
+
+    animation: cardShow 0.6s ease;
+}
+
+
+/* animation */
+@keyframes cardShow {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Title */
+.book-detail-title {
+    text-align: center;
+
+    color: #e0bc5c;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 42px;
+
+    margin-bottom: 30px;
+}
+
+
+/* Infos */
+.book-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.book-detail-row {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid rgba(205,164,60,0.3);
+}
+
+
+.book-detail-label {
+    color: #e0bc5c;
+
+    font-family: "Inria Serif", serif;
+    font-weight: bold;
+}
+
+
+.book-detail-value {
+    color: #f6efdd;
+
+    font-family: "Inria Serif", serif;
+
+    text-align: right;
+}
+
+
+/* Description */
+.book-detail-description .book-detail-value {
+    text-align: left;
+    display: block;
+    line-height: 1.8;
+  
+}
+
+
+/* Back button */
+.back-link {
+
+    margin-top: 30px;
+
+    padding: 12px 30px;
+
+    background: #cda43c;
+    color: #4a0e21;
+
+    border-radius: 25px;
+
+    text-decoration: none;
+
+    font-family: "Inria Serif", serif;
+    font-size: 17px;
+
+    transition: all 0.3s ease;
+}
+
+
+.back-link:hover {
+
+    background: #e0bc5c;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 5px 15px rgba(201,162,39,0.4);
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+
+    .book-detail-card {
+        padding: 25px 20px;
+    }
+
+
+    .book-detail-title {
+        font-size: 34px;
+    }
+
+
+    .book-detail-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+
+    .book-detail-value {
+        text-align: left;
+    }
+}

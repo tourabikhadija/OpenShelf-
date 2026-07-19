@@ -42,7 +42,7 @@ export default function BookDetails(){
     }
 
     return(
-        <div>
+        <div className="book-details-page">
             <DetailCard key={book._id} book={book}/>
 
 

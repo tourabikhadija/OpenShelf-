@@ -1,5 +1,5 @@
 'use client';
-
+import "@/style/DetailCard.css";
 import Link from 'next/link';
 
 type Book = {
