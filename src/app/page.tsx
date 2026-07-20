@@ -4,6 +4,7 @@ import BookCard from "@/components/BookCard";
 import SearchBar from "@/components/SearchBar";
 import  "@/style/Home.css";
 import Image from "next/image";
+import Link from "next/link";
 
 type Book = {
     _id: string;
@@ -70,8 +71,10 @@ export default function App(){
          <p>A private catalogue of the permanent collection
          , curated and cared for by the Ashworth Athenaeum.  
          </p>
-
-         <button className="Collection">Explore Collection</button>
+        <Link href="/books/create">
+        <button className="Collection">Create Book</button>
+        </Link>
+         
         </div>
 
         <div className="hero-image-container">
